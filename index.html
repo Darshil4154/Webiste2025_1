@@ -49,6 +49,187 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
 
+	<style>
+		.project-card-overlay {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			padding: 20px;
+			background: linear-gradient(transparent, rgba(0,0,0,0.85));
+			z-index: 1;
+			pointer-events: none;
+		}
+		.project-card-overlay h4 {
+			color: #fff;
+			margin: 0 0 5px;
+			font-family: "Quicksand", Arial, sans-serif;
+			font-weight: 700;
+			font-size: 15px;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+		.project-card-overlay p {
+			color: rgba(255,255,255,0.85);
+			font-size: 12px;
+			margin: 0;
+		}
+		.project .desc {
+			z-index: 2;
+		}
+		.project-modal .modal-content {
+			border-radius: 8px;
+			border: none;
+		}
+		.project-modal .modal-header {
+			border-bottom: 2px solid #f0f0f0;
+			padding: 20px 25px;
+		}
+		.project-modal .modal-header .modal-title {
+			font-family: "Quicksand", Arial, sans-serif;
+			font-weight: 700;
+			font-size: 20px;
+		}
+		.project-modal .modal-body {
+			padding: 25px;
+			max-height: 70vh;
+			overflow-y: auto;
+		}
+		.project-modal .modal-body h5 {
+			font-family: "Quicksand", Arial, sans-serif;
+			font-weight: 700;
+			margin-top: 20px;
+			margin-bottom: 10px;
+			color: #333;
+		}
+		.project-modal .modal-body ul {
+			padding-left: 20px;
+		}
+		.project-modal .modal-body ul li {
+			margin-bottom: 6px;
+			font-size: 14px;
+			text-align: justify;
+		}
+		.project-modal .modal-body p {
+			font-size: 14px;
+			text-align: justify;
+			line-height: 1.7;
+		}
+		.project-modal .modal-footer {
+			border-top: 2px solid #f0f0f0;
+			padding: 15px 25px;
+		}
+		.btn-github {
+			background-color: #333;
+			color: #fff;
+			border: none;
+			padding: 8px 20px;
+			border-radius: 4px;
+			font-weight: 600;
+			text-decoration: none;
+			display: inline-block;
+			margin-right: 10px;
+		}
+		.btn-github:hover {
+			background-color: #555;
+			color: #fff;
+			text-decoration: none;
+		}
+		.badge-tech {
+			display: inline-block;
+			background: linear-gradient(135deg, #667eea, #764ba2);
+			color: #fff;
+			padding: 5px 14px;
+			border-radius: 20px;
+			font-size: 11px;
+			margin: 4px 3px;
+			font-weight: 600;
+			font-family: "Quicksand", Arial, sans-serif;
+			letter-spacing: 0.3px;
+			text-transform: uppercase;
+			box-shadow: 0 2px 6px rgba(102,126,234,0.3);
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+		}
+		.badge-tech:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 4px 10px rgba(102,126,234,0.45);
+		}
+		.cert-row {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.cert-row > [class*="col-"] {
+			display: flex;
+			margin-bottom: 30px;
+		}
+		.cert-card {
+			background: #fff;
+			border-radius: 12px;
+			box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+			padding: 30px 22px 25px;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 100%;
+			border: 1px solid rgba(0,0,0,0.04);
+		}
+		.cert-card:hover {
+			transform: translateY(-6px);
+			box-shadow: 0 12px 35px rgba(0,0,0,0.14);
+		}
+		.cert-card .cert-desc {
+			flex-grow: 1;
+		}
+		.cert-card .cert-skills {
+			margin-top: auto;
+			padding-top: 15px;
+			width: 100%;
+		}
+		.cert-card .cert-btn {
+			margin-top: 20px;
+		}
+		.cert-badge {
+			width: 70px;
+			height: 70px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 auto 18px;
+			font-size: 30px;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+		}
+		.cert-card h3 {
+			font-family: "Quicksand", Arial, sans-serif;
+			font-weight: 700;
+			font-size: 16px;
+			margin-bottom: 6px;
+			color: #2c3e50;
+			letter-spacing: 0.3px;
+		}
+		.cert-card .cert-issuer {
+			color: #999;
+			font-size: 12px;
+			margin-bottom: 14px;
+			font-family: "Quicksand", Arial, sans-serif;
+			font-weight: 500;
+			letter-spacing: 0.2px;
+		}
+		.cert-card .cert-desc {
+			font-size: 13px;
+			text-align: center;
+			line-height: 1.65;
+			color: #555;
+			font-family: "Quicksand", Arial, sans-serif;
+		}
+		@media screen and (max-width: 991px) {
+			.cert-row > [class*="col-"] {
+				margin-bottom: 20px;
+			}
+		}
+	</style>
+
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -80,6 +261,7 @@
 						<li><a href="#" data-nav-section="testimonials">Testimonials</a></li>
 						<li><a href="#" data-nav-section="experience">Experience</a></li>
 						<li><a href="#" data-nav-section="education">Education</a></li>
+						<li><a href="#" data-nav-section="certifications">Certifications</a></li>
 						<li><a href="#" data-nav-section="research work">Research Work</a></li>
 						<li><a href="#" data-nav-section="achievements">Achievements</a></li>
 						<li><a href="#" data-nav-section="contact">Contact</a></li>
@@ -103,7 +285,7 @@
 			<section id="colorlib-hero" class="js-fullheight" data-section="home">
 				<div class="flexslider js-fullheight">
 					<ul class="slides">
-				   	<li style="background-image: url(images/profile_5.jpg);">
+				   	<li style="background-image: url(images/profile-pic-Darshil3.png); background-position: top center;">
 				   		<div class="overlay"></div>
 				   		<div class="container-fluid">
 				   			<div class="row">
@@ -208,6 +390,54 @@
 							</div>
 						</div>
 
+						<div class="col-md-5 animate-box" data-animate-effect="fadeInLeft">
+							<div class="project" style="background-image: url(images/aws_hackathon_thumb.png); position: relative;">
+								<div class="project-card-overlay">
+									<h4>AWS AI Hackathon 2026</h4>
+									<p>Top 3 Finish &mdash; AI Interview Intelligence System</p>
+								</div>
+								<div class="desc">
+									<div class="con">
+										<h3 style="text-align: center; padding-top: 10ch;">
+											<a style="border: 2px solid white;" href="#" data-toggle="modal" data-target="#awsHackathonModal" class="btn btn-dark" role="button">View Project</a>
+										</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-5 animate-box" data-animate-effect="fadeInLeft">
+							<div class="project" style="background-image: url(images/case_comp_thumb.png); position: relative;">
+								<div class="project-card-overlay">
+									<h4>CMIS Case Competition</h4>
+									<p>AI-Powered Digital Engagement Platform</p>
+								</div>
+								<div class="desc">
+									<div class="con">
+										<h3 style="text-align: center; padding-top: 10ch;">
+											<a style="border: 2px solid white;" href="#" data-toggle="modal" data-target="#caseCompModal" class="btn btn-dark" role="button">View Project</a>
+										</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-5 animate-box" data-animate-effect="fadeInLeft">
+							<div class="project" style="background-image: url(images/datathon_thumb.png); position: relative;">
+								<div class="project-card-overlay">
+									<h4>TAMU Datathon 2025</h4>
+									<p>3rd Place &mdash; MCP Server for AI Context Awareness</p>
+								</div>
+								<div class="desc">
+									<div class="con">
+										<h3 style="text-align: center; padding-top: 10ch;">
+											<a style="border: 2px solid white;" href="#" data-toggle="modal" data-target="#datathonModal" class="btn btn-dark" role="button">View Project</a>
+										</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+
 						
 			</section>
 
@@ -246,6 +476,15 @@
 								<!-- <span class="icon2"><i class="icon-bulb"></i></span> -->
 								<h3> <b>Interpersonal Skills</b></h3>
 								<h3 style="font-size: small; text-align: center;">Effective Communication  | Stakeholder Management  |  Collaboration  |  Problem-solving  |  Design Thinking  |  Resilience  <br><br>  Negotiation  |   Time and Task Management  |  Presentation Skills  </h3>
+							</div>
+						</div>
+					</div>	
+
+					<div class="row">
+						<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+							<div class="services color-4" style="height: 130px;" >
+								<h3> <b>AI/ML Implementation</b></h3>
+								<h3 style="font-size: small; text-align: center;">LLM-based Workflows  |  RAG (Retrieval-Augmented Generation)  |  Vector Embedding  |  Prompt Engineering  |  AI Governance  <br><br>  Workflow Automation  |  n8n  |  Amazon Bedrock  |  Generative AI  |  Responsible AI</h3>
 							</div>
 						</div>
 					</div>	
@@ -600,6 +839,91 @@ It’s a pleasure to work alongside someone who is not only technically proficie
 				</div>
 			</section>
 
+			<section class="colorlib-experience" data-section="certifications">
+				<div class="colorlib-narrow-content">
+					<div class="row">
+						<div class="col-md-12 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+							<span class="heading-meta">Professional Certifications</span>
+							<h2 class="colorlib-heading animate-box">Certifications</h2>
+						</div>
+					</div>
+					<div class="row cert-row">
+						<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
+							<div class="cert-card text-center">
+								<div class="cert-badge" style="background: linear-gradient(135deg, #FF9900, #232F3E);">
+									<i class="fa-brands fa-aws" style="color: #fff;"></i>
+								</div>
+								<h3>AWS Certified AI Practitioner</h3>
+								<p class="cert-issuer">Amazon Web Services Training and Certification</p>
+								<p class="cert-desc">Earned as part of ISTM 624: Advanced Systems Analysis &amp; Design at Texas A&amp;M University. Validates AI/ML concepts including Amazon Bedrock, SageMaker, and responsible AI practices.</p>
+								<div class="cert-skills">
+									<span class="badge-tech">Amazon Bedrock</span>
+									<span class="badge-tech">SageMaker</span>
+									<span class="badge-tech">Lambda</span>
+									<span class="badge-tech">API Gateway</span>
+									<span class="badge-tech">EventBridge</span>
+									<span class="badge-tech">Textract</span>
+									<span class="badge-tech">Comprehend</span>
+									<span class="badge-tech">Rekognition</span>
+									<span class="badge-tech">Responsible AI</span>
+								</div>
+								<div class="cert-btn">
+									<a href="https://www.credly.com/badges/c3f3a2ab-7b18-411e-a885-5b02154f8699/linked_in?t=t67j6j" target="_blank" class="btn btn-primary" style="border-radius: 20px; padding: 8px 22px; font-size: 13px; font-weight: 600;">
+										<i class="fa-solid fa-certificate"></i> View on Credly
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
+							<div class="cert-card text-center">
+								<div class="cert-badge" style="background: linear-gradient(135deg, #0077B5, #004182);">
+									<i class="fa-brands fa-linkedin-in" style="color: #fff;"></i>
+								</div>
+								<h3>AI for Project Managers</h3>
+								<p class="cert-issuer">LinkedIn Learning &mdash; By Oliver Yarbrough</p>
+								<p class="cert-desc">Completed September 2025. Covers the application of Artificial Intelligence in project management workflows, enabling smarter decision-making and process optimization.</p>
+								<div class="cert-skills">
+									<span class="badge-tech">Project Management</span>
+									<span class="badge-tech">AI for Business</span>
+									<span class="badge-tech">Artificial Intelligence</span>
+									<span class="badge-tech">AI for PM</span>
+								</div>
+								<div class="cert-btn">
+									<a href="https://www.linkedin.com/learning/certificates/0c861a7e47e8745a260fb6f3cad650ed1a6745f5b5ae3c53a28861435ca650a2?accountId=74650722&u=74650722" target="_blank" class="btn btn-primary" style="border-radius: 20px; padding: 8px 22px; font-size: 13px; font-weight: 600;">
+										<i class="fa-solid fa-certificate"></i> View Certificate
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
+							<div class="cert-card text-center">
+								<div class="cert-badge" style="background: linear-gradient(135deg, #EA4B71, #FF6D5A);">
+									<i class="fa-solid fa-diagram-project" style="color: #fff;"></i>
+								</div>
+								<h3>n8n Course Level 2</h3>
+								<p class="cert-issuer">n8n &mdash; Workflow Automation Platform</p>
+								<p class="cert-desc">Advanced certification covering workflow automation, data transformation, conditional logic, loops, and optimization techniques for building scalable automated pipelines.</p>
+								<div class="cert-skills">
+									<span class="badge-tech">Node Config</span>
+									<span class="badge-tech">Data Transform</span>
+									<span class="badge-tech">Error Workflow</span>
+									<span class="badge-tech">Loops</span>
+									<span class="badge-tech">Conditional Logic</span>
+									<span class="badge-tech">Optimization</span>
+								</div>
+								<div class="cert-btn">
+									<a href="https://learn.app.n8n.cloud/webhook/course-level-2/verify?id=995712a5b3385ca649c8a87097460199&submit=Submit" target="_blank" class="btn btn-primary" style="border-radius: 20px; padding: 8px 22px; font-size: 13px; font-weight: 600;">
+										<i class="fa-solid fa-certificate"></i> Verify Certificate
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
 			<section class="colorlib-about" data-section="research work">
 				<div class="colorlib-narrow-content">
 					<div class="row">
@@ -776,6 +1100,152 @@ Designed and deployed an IoT-enabled smart home system using NodeMCU, Blynk, and
 		</div><!-- end:colorlib-main -->
 	</div><!-- end:container-wrap -->
 	</div><!-- end:colorlib-page -->
+
+	<!-- Project Detail Modals -->
+	<div class="modal fade project-modal" id="awsHackathonModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">AWS AI Hackathon 2026 &mdash; Top 3 Finish</h4>
+				</div>
+				<div class="modal-body">
+					<p><strong>Event:</strong> AWS AI Hackathon hosted by INFO Department &mdash; Mays Business School &amp; CMIS at Texas A&amp;M University</p>
+					<p><strong>Team:</strong> Darshil Rayjada, Nisarg Sonar, Aniket Patel</p>
+
+					<h5>What We Built</h5>
+					<p>An end-to-end <strong>AI Interview Intelligence System</strong> that helps interviewers and interviewees have deeper, more meaningful conversations &mdash; even when the interviewer only has 5&ndash;10 minutes to prepare.</p>
+
+					<h5>Key Capabilities</h5>
+					<ul>
+						<li><strong>Interviewer Brief (2&ndash;3 pages in under 5 min):</strong> Company overview &amp; market context, "What we think we know" section for the interviewee to correct, 8 tailored questions with follow-ups, knowledge gaps &amp; 6-phase conversation flow</li>
+						<li><strong>Pre-Interview Packet (1 page):</strong> "Here&rsquo;s what we learned about your organization," 5&ndash;6 foundational questions with interviewee topic selection</li>
+						<li><strong>Two-Stage Interview Approach:</strong> AI sends understanding + questions &rarr; interviewee corrects and selects topics &rarr; interview starts with "What did the AI get wrong?"</li>
+					</ul>
+
+					<h5>Standout Features</h5>
+					<ul>
+						<li><strong>5-Minute Prep Mode:</strong> Top 3 questions, key facts, and a quick-start view for last-minute prep</li>
+						<li><strong>Interview Anxiety Support:</strong> Opening lines, transition phrases, recovery prompts, and closing scripts</li>
+						<li><strong>Accessibility-First Design:</strong> Text-to-speech, audio-friendly, and low-cognitive-load modes for screen-reader users</li>
+						<li><strong>LinkedIn Integration:</strong> URL parsing to auto-extract interviewee info for personalized briefs</li>
+					</ul>
+
+					<h5>Tech Stack</h5>
+					<div style="margin-top: 10px;">
+						<span class="badge-tech">React + Vite</span>
+						<span class="badge-tech">AWS Amplify</span>
+						<span class="badge-tech">Amazon Bedrock</span>
+						<span class="badge-tech">Claude 3 Haiku</span>
+						<span class="badge-tech">Amazon S3</span>
+						<span class="badge-tech">Amazon Textract</span>
+						<span class="badge-tech">Amazon Comprehend</span>
+						<span class="badge-tech">AWS Lambda</span>
+						<span class="badge-tech">API Gateway</span>
+						<span class="badge-tech">DynamoDB</span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="btn-github" target="_blank"><i class="fa-brands fa-github"></i> GitHub Repository</a>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade project-modal" id="caseCompModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">CMIS Case Competition &mdash; Digital Engagement Platform</h4>
+				</div>
+				<div class="modal-body">
+					<p><strong>Event:</strong> Case Competition &mdash; Mays Business School, Texas A&amp;M University CMIS</p>
+					<p><strong>Team:</strong> Darshil Rayjada, Pragathii Arumugam Udhayakumar, Ananya, Rohit Shejole</p>
+
+					<h5>What We Built</h5>
+					<p>A full end-to-end digital engagement platform reimagined for Mays Business School CMIS &mdash; a system supporting thousands of students, alumni, faculty, recruiters, and corporate partners. Over two weeks of intensive day-and-night work, our team designed and built a production-grade solution.</p>
+
+					<h5>Key Features</h5>
+					<ul>
+						<li>AI mentor matching using similarity search &amp; vector embeddings</li>
+						<li>Automated, personalized email workflows using n8n + GenAI APIs</li>
+						<li>Role-based dashboards for students, alumni, faculty, mentors, speakers, judges</li>
+						<li>Judge scoring system, event management, competition workflows</li>
+						<li>AI chatbot (OpenAI/Gemini) for CMIS FAQs</li>
+						<li>Resume parsing &rarr; embeddings &rarr; mentor mapping</li>
+						<li>Human-Tone Email Generation (Prompt Engineering + Few-shot prompting)</li>
+					</ul>
+
+					<h5>Key Learnings</h5>
+					<p>Case competitions are not solved by code &mdash; they are solved by clarity, planning, structure, and storytelling. There is never one "right" solution &mdash; only a better narrative. This experience taught more than any classroom ever could.</p>
+
+					<h5>Tech Stack</h5>
+					<div style="margin-top: 10px;">
+						<span class="badge-tech">Vector Embeddings</span>
+						<span class="badge-tech">Similarity Search</span>
+						<span class="badge-tech">n8n Workflows</span>
+						<span class="badge-tech">GenAI APIs</span>
+						<span class="badge-tech">OpenAI</span>
+						<span class="badge-tech">Gemini</span>
+						<span class="badge-tech">SMTP/IMAP</span>
+						<span class="badge-tech">Prompt Engineering</span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="btn-github" target="_blank"><i class="fa-brands fa-github"></i> GitHub Repository</a>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade project-modal" id="datathonModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">TAMU Datathon 2025 &mdash; 3rd Place Winner</h4>
+				</div>
+				<div class="modal-body">
+					<p><strong>Event:</strong> TAMU Datathon 2025 &mdash; Build MCP Challenge at Texas A&amp;M University</p>
+					<p><strong>Team:</strong> "404 Not Founders" &mdash; Darshil Rayjada, Pragathii Arumugam Udhayakumar, Harsh Wadhawe, Sonali Dash</p>
+					<p><strong>Result:</strong> 3rd Place Winner &mdash; Build MCP Challenge | Prize: Amazon Echo Dot</p>
+
+					<h5>What We Built</h5>
+					<p>A <strong>Project Management MCP Server</strong> &mdash; a FastAPI + Gemini-powered middleware that connects tools like Google Calendar, GitHub, Slack, Monday.com, and Jira, fetching, ranking, and summarizing data to give AI real-world awareness.</p>
+					<p><em>Example: Ask "What&rsquo;s blocking our sprint today?" &rarr; System fetches your meetings, PRs, backlog, and Slack updates, giving the AI the full picture.</em></p>
+
+					<h5>Key Highlights</h5>
+					<ul>
+						<li>Intelligent Query Analyzer for multi-domain intent detection</li>
+						<li>Real-time context gathering from multiple enterprise systems</li>
+						<li>Smart summarization engine reducing token usage by 40%</li>
+						<li>Context correlation across systems (JIRA &rarr; GitHub &rarr; Slack)</li>
+						<li>Seamless Gemini integration for context-driven responses</li>
+					</ul>
+
+					<h5>Tech Stack</h5>
+					<div style="margin-top: 10px;">
+						<span class="badge-tech">FastAPI</span>
+						<span class="badge-tech">Python</span>
+						<span class="badge-tech">Gemini 2.5 Flash</span>
+						<span class="badge-tech">MCP Protocol</span>
+						<span class="badge-tech">Google Calendar API</span>
+						<span class="badge-tech">GitHub API</span>
+						<span class="badge-tech">Slack API</span>
+						<span class="badge-tech">Monday.com API</span>
+						<span class="badge-tech">Jira API</span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="btn-github" target="_blank"><i class="fa-brands fa-github"></i> GitHub Repository</a>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
